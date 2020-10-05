@@ -1,0 +1,104 @@
+PROGRAM Prog1
+#info= QLD
+BOF
+
+
+(*To start off the circuit, recommened to start sensor in one direction and it works after  that.Turn on timer turns on the yellow light after 5 seconds and turns off the green light in the east and west direction. After another 2 seconds, total of 7 second*)
+
+SOR  [0,1] (**) (**)  XIC  [1,0] (*O1*) (**)  
+ BST  FB  [2,0] (*TON*) (*TON_1*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#5s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )  
+ BST  OTS  [5,0] (*_IO_EM_DO_04*) (**)
+   NXB  OTR  [5,1] (*_IO_EM_DO_05*) (**)
+ BND
+
+   NXB  FB  [2,2] (*TON*) (*TON_2*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#7s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )  
+ BST  OTR  [5,2] (*_IO_EM_DO_04*) (**)
+   NXB  
+ BST  OTS  [5,3] (*_IO_EM_DO_02*) (**)
+   NXB  
+ BST  OTS  [5,4] (*_IO_EM_DO_03*) (**)
+   NXB  OTR  [5,5] (*_IO_EM_DO_00*) (**)
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+EOR [6,0]
+
+
+(*These are the sensors using a pulse rising edge to keep the sensors activated which in turn uses the turn off timer to activate the turn the turn on timer in the other circuit. This also ensures that the same light is not on in both directions with the re*)
+
+SOR  [0,8] (**) (**)  
+ BST  XIP  [1,0] (*_IO_EM_DI_03*) (**)
+   NXB  XIP  [1,1] (*_IO_EM_DI_04*) (**)
+ BND
+  XIO  [2,0] (*_IO_EM_DO_02*) (**)  FB  [3,0] (*TOF*) (*TOF_1*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#7s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )  OTE  [6,0] (*O1*) (**)
+EOR [7,0]
+
+
+(*Turn on timer turns on the yellow light after 5 seconds and turns off the green light in the north and south direction. After another 2 seconds, total of 7 seconds from initiation of sensor, the yellow light turns off in north and south direction and turn*)
+
+SOR  [0,11] (**) (**)  XIC  [1,0] (*O2*) (**)  
+ BST  FB  [2,0] (*TON*) (*TON_3*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#5s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )  
+ BST  OTS  [5,0] (*_IO_EM_DO_01*) (**)
+   NXB  OTR  [5,1] (*_IO_EM_DO_02*) (**)
+ BND
+
+   NXB  FB  [2,2] (*TON*) (*TON_4*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#7s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )  
+ BST  OTR  [5,2] (*_IO_EM_DO_01*) (**)
+   NXB  
+ BST  OTS  [5,3] (*_IO_EM_DO_05*) (**)
+   NXB  
+ BST  OTS  [5,4] (*_IO_EM_DO_00*) (**)
+   NXB  OTR  [5,5] (*_IO_EM_DO_03*) (**)
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+EOR [6,0]
+
+
+(*These are the sensors using a pulse rising edge to keep the sensors activated which in turn uses the turn off timer to activate the turn the turn on timer in the other circuit. This also ensures that the same light is not on in both directions with the re*)
+
+SOR  [0,18] (**) (**)  
+ BST  XIP  [1,0] (*_IO_EM_DI_05*) (**)
+   NXB  XIP  [1,1] (*_IO_EM_DI_06*) (**)
+ BND
+  XIO  [2,0] (*_IO_EM_DO_05*) (**)  FB  [3,0] (*TOF*) (*TOF_2*) ( (*IN:IN*)(**) (**)  , (*PT:PT*)(*T#7s*) (**) ; (*Q:Q*)(**) (**)  , (*ET:ET*)(**) (**) )  OTE  [6,0] (*O2*) (**)
+EOR [7,0]
+
+
+(*Again, this it the master switch to reset the timers in both directions. *)
+
+SOR  [0,21] (**) (**)  XIC  [1,0] (*_IO_EM_DI_02*) (**)  
+ BST  OTR  [2,0] (*_IO_EM_DO_00*) (**)
+   NXB  
+ BST  
+ BST  OTR  [2,1] (*_IO_EM_DO_01*) (**)
+   NXB  OTR  [2,2] (*_IO_EM_DO_02*) (**)
+ BND
+
+   NXB  
+ BST  OTR  [2,3] (*_IO_EM_DO_03*) (**)
+   NXB  
+ BST  OTR  [2,4] (*_IO_EM_DO_04*) (**)
+   NXB  OTR  [2,5] (*_IO_EM_DO_05*) (**)
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+EOR [3,0]
+EOF
+#end_info
+END_PROGRAM

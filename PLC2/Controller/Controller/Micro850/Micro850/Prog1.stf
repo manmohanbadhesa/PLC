@@ -1,0 +1,140 @@
+PROGRAM Prog1
+#info= QLD
+BOF
+
+
+(**)
+
+SOR  [0,1] (**) (**)  XIC  [1,0] (*_IO_EM_DI_03*) (**)  
+ BST  FB  [2,0] (*CTD*) (*CTD_1*) ( (*CD:CD*)(**) (**)  , (*LOAD:LOAD*)(*_IO_EM_DI_02*) (**)  , (*PV:PV*)(*5*) (**) ; (*Q:Q*)(**) (**)  , (*CV:CV*)(**) (**) )  
+ BST  OTS  [5,0] (*_IO_EM_DO_00*) (**)
+   NXB  
+ BST  OTR  [5,1] (*_IO_EM_DO_05*) (**)
+   NXB  XIO  [5,2] (*O4*) (**)  OTS  [6,2] (*_IO_EM_DO_04*) (**)
+ BND
+
+ BND
+
+   NXB  OTR  [2,3] (*_IO_EM_DO_04*) (**)
+ BND
+
+EOR [7,0]
+
+
+(**)
+
+SOR  [0,6] (**) (**)  XIC  [1,0] (*_IO_EM_DI_04*) (**)  
+ BST  FB  [2,0] (*CTD*) (*CTD_2*) ( (*CD:CD*)(**) (**)  , (*LOAD:LOAD*)(*_IO_EM_DI_02*) (**)  , (*PV:PV*)(*5*) (**) ; (*Q:Q*)(**) (**)  , (*CV:CV*)(**) (**) )  
+ BST  OTS  [5,0] (*_IO_EM_DO_01*) (**)
+   NXB  
+ BST  OTR  [5,1] (*_IO_EM_DO_05*) (**)
+   NXB  OTS  [5,2] (*_IO_EM_DO_04*) (**)
+ BND
+
+ BND
+
+   NXB  OTR  [2,3] (*_IO_EM_DO_04*) (**)
+ BND
+
+EOR [6,0]
+
+
+(**)
+
+SOR  [0,11] (**) (**)  XIC  [1,0] (*_IO_EM_DI_05*) (**)  FB  [2,0] (*CTD*) (*CTD_3*) ( (*CD:CD*)(**) (**)  , (*LOAD:LOAD*)(*_IO_EM_DI_02*) (**)  , (*PV:PV*)(*5*) (**) ; (*Q:Q*)(**) (**)  , (*CV:CV*)(**) (**) )  OTS  [5,0] (*_IO_EM_DO_02*) (**)
+EOR [6,0]
+
+
+(**)
+
+SOR  [0,15] (**) (**)  XIC  [1,0] (*_IO_EM_DI_06*) (**)  FB  [2,0] (*CTD*) (*CTD_4*) ( (*CD:CD*)(**) (**)  , (*LOAD:LOAD*)(*_IO_EM_DI_02*) (**)  , (*PV:PV*)(*5*) (**) ; (*Q:Q*)(**) (**)  , (*CV:CV*)(**) (**) )  
+ BST  OTS  [5,0] (*_IO_EM_DO_03*) (**)
+   NXB  OTS  [5,1] (*_IO_EM_DO_04*) (**)
+ BND
+
+EOR [6,0]
+
+
+(**)
+
+SOR  [0,19] (**) (**)  XIC  [1,0] (*_IO_EM_DI_00*) (**)  OTS  [2,0] (*_IO_EM_DO_04*) (**)
+EOR [3,0]
+
+
+(**)
+
+SOR  [0,21] (**) (**)  
+ BST  XIC  [1,0] (*_IO_EM_DI_03*) (**)
+   NXB  
+ BST  XIC  [1,1] (*_IO_EM_DI_04*) (**)
+   NXB  
+ BST  XIC  [1,2] (*_IO_EM_DI_05*) (**)
+   NXB  XIC  [1,3] (*_IO_EM_DI_06*) (**)
+ BND
+
+ BND
+
+ BND
+  OTS  [2,0] (*_IO_EM_DO_05*) (**)
+EOR [3,0]
+
+
+(**)
+
+SOR  [0,26] (**) (**)  
+ BST  XIC  [1,0] (*_IO_EM_DI_03*) (**)
+   NXB  
+ BST  XIC  [1,1] (*_IO_EM_DI_04*) (**)
+   NXB  
+ BST  XIC  [1,2] (*_IO_EM_DI_05*) (**)
+   NXB  XIC  [1,3] (*_IO_EM_DI_06*) (**)
+ BND
+
+ BND
+
+ BND
+  XIC  [2,0] (*O5*) (**)  OTS  [3,0] (*O456*) (**)
+EOR [4,0]
+
+
+(**)
+
+SOR  [0,31] (**) (**)  XIC  [1,0] (*_IO_EM_DI_01*) (**)  OTR  [2,0] (*_IO_EM_DO_05*) (**)
+EOR [3,0]
+
+
+(**)
+
+SOR  [0,33] (**) (**)  XIC  [1,0] (*_IO_EM_DI_02*) (**)  
+ BST  
+ BST  OTR  [2,0] (*_IO_EM_DO_00*) (**)
+   NXB  OTR  [2,1] (*_IO_EM_DO_01*) (**)
+ BND
+
+   NXB  
+ BST  OTR  [2,2] (*_IO_EM_DO_02*) (**)
+   NXB  
+ BST  OTR  [2,3] (*_IO_EM_DO_03*) (**)
+   NXB  
+ BST  
+ BST  
+ BST  OTR  [2,4] (*_IO_EM_DO_04*) (**)
+   NXB  OTR  [2,5] (*_IO_EM_DO_05*) (**)
+ BND
+
+   NXB  OTR  [2,6] (*O4*) (**)
+ BND
+
+   NXB  OTR  [2,7] (*O5*) (**)
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+EOR [3,0]
+EOF
+#end_info
+END_PROGRAM

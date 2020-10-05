@@ -1,0 +1,177 @@
+(****** QuickLD compiler *******************************)
+(****** Copyright Rockwell Automation Canada, Ltd ******)
+(****** ST *********************************************)
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+_IO_EM_DO_00 := NOT(_IO_EM_DO_01) ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(*Get ticket and entry boom lifts if reverse contact of parking lot full not activated. O6 internal connection indicating parking lot closed.*)
+(*Label :*)(**)
+__EDTB1 := _IO_EM_DI_03 AND NOT(_IO_EM_DO_05) AND NOT(O6) ;
+__EDTB2 := __EDTB1 ;
+IF __EDTB2 THEN
+(*Set coil*)
+_IO_EM_DO_01 := TRUE ;
+END_IF ;
+__EDTB3 := __EDTB1 ;
+IF __EDTB3 THEN
+(*Set coil*)
+O4 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+_IO_EM_DO_02 := NOT(_IO_EM_DO_03) ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Fall detection on  : _IO_EM_DI_05 with __MEMO__1___IO_EM_DI_05 *)
+__EDTB4 := (__MEMO__1___IO_EM_DI_05 AND NOT(_IO_EM_DI_05)) AND O4 ;
+(* FB call: CTUD *)
+CTUD_1(__EDTB4, O5, _IO_EM_DI_02, _IO_EM_DI_00, 6) ;
+_IO_EM_DO_04 := CTUD_1.QD ;
+_IO_EM_DO_05 := CTUD_1.QU ;
+__EDTB5 := __EDTB4 ;
+IF __EDTB5 THEN
+(*Reset coil*)
+_IO_EM_DO_01 := FALSE ;
+END_IF ;
+__EDTB6 := __EDTB4 ;
+IF __EDTB6 THEN
+(*Reset coil*)
+O4 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__1___IO_EM_DI_05 := _IO_EM_DI_05 ; (*Fall detection on  : _IO_EM_DI_05 with __MEMO__1___IO_EM_DI_05 *)
+
+
+(*************** Rung **********************************)
+(*If parking lot is empty, then only can the parking lot be locked, which is connected to the up down counter and as it hits zero, the O_04 is activated. *)
+(*Label :*)(**)
+__EDTB7 := _IO_EM_DI_00 AND _IO_EM_DO_04 ;
+IF __EDTB7 THEN
+(*Set coil*)
+O6 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(*This can reopen parking lot.*)
+(*Label :*)(**)
+__EDTB8 := _IO_EM_DI_01 ;
+IF __EDTB8 THEN
+(*Reset coil*)
+O6 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(*If you pay at exit , then the exit boom lifts, but it should not lift if the parking lot is empty, that is why the reverse contact of the O_04 is there. *)
+(*Label :*)(**)
+__EDTB9 := _IO_EM_DI_04 AND NOT(_IO_EM_DO_04) ;
+IF __EDTB9 THEN
+(*Set coil*)
+_IO_EM_DO_03 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(*This ensures that *)
+(*Label :*)(**)
+; (*Fall detection on  : _IO_EM_DI_06 with __MEMO__2___IO_EM_DI_06 *)
+__EDTB10 := (__MEMO__2___IO_EM_DI_06 AND NOT(_IO_EM_DI_06)) AND _IO_EM_DO_03 ;
+O5 := __EDTB10 ;
+__EDTB11 := __EDTB10 ;
+IF __EDTB11 THEN
+(*Reset coil*)
+_IO_EM_DO_03 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__2___IO_EM_DI_06 := _IO_EM_DI_06 ; (*Fall detection on  : _IO_EM_DI_06 with __MEMO__2___IO_EM_DI_06 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB12 := _IO_EM_DI_02 ;
+IF __EDTB12 THEN
+(*Reset coil*)
+_IO_EM_DO_00 := FALSE ;
+END_IF ;
+__EDTB13 := _IO_EM_DI_02 ;
+IF __EDTB13 THEN
+(*Reset coil*)
+_IO_EM_DO_01 := FALSE ;
+END_IF ;
+__EDTB14 := _IO_EM_DI_02 ;
+IF __EDTB14 THEN
+(*Reset coil*)
+_IO_EM_DO_02 := FALSE ;
+END_IF ;
+__EDTB15 := _IO_EM_DI_02 ;
+IF __EDTB15 THEN
+(*Reset coil*)
+_IO_EM_DO_03 := FALSE ;
+END_IF ;
+__EDTB16 := _IO_EM_DI_02 ;
+IF __EDTB16 THEN
+(*Reset coil*)
+_IO_EM_DO_04 := FALSE ;
+END_IF ;
+__EDTB17 := _IO_EM_DI_02 ;
+IF __EDTB17 THEN
+(*Reset coil*)
+_IO_EM_DO_05 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Code for the end of File **************)
+__GL __LG0000 ;
+
+
+
+(*************** Local Symbols table *******************)
+(* __EDTB1 *)
+(* __EDTB2 *)
+(* __EDTB3 *)
+(* __MEMO__1___IO_EM_DI_05 *)
+(* __EDTB4 *)
+(* __EDTB5 *)
+(* __EDTB6 *)
+(* __EDTB7 *)
+(* __EDTB8 *)
+(* __EDTB9 *)
+(* __MEMO__2___IO_EM_DI_06 *)
+(* __EDTB10 *)
+(* __EDTB11 *)
+(* __EDTB12 *)
+(* __EDTB13 *)
+(* __EDTB14 *)
+(* __EDTB15 *)
+(* __EDTB16 *)
+(* __EDTB17 *)
+

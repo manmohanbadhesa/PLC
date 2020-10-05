@@ -1,0 +1,96 @@
+PROGRAM Prog1
+#info= QLD
+BOF
+
+
+(**)
+
+SOR  [0,1] (**) (**)  XIO  [1,0] (*_IO_EM_DO_01*) (*entry boom lifts*)  OTE  [2,0] (*_IO_EM_DO_00*) (*entry boom lowers*)
+EOR [3,0]
+
+
+(*Get ticket and entry boom lifts if reverse contact of parking lot full not activated. O6 internal connection indicating parking lot closed. Also indicates to sensor that car person has paid and the entry sensor can be activated with O4.*)
+
+SOR  [0,3] (**) (**)  XIC  [1,0] (*_IO_EM_DI_03*) (*dispenser*)  XIO  [2,0] (*_IO_EM_DO_05*) (*parking lot full*)  XIO  [3,0] (*O6*) (*parking lot closed*)  
+ BST  OTS  [4,0] (*_IO_EM_DO_01*) (*entry boom lifts*)
+   NXB  OTS  [4,1] (*O4*) (**)
+ BND
+
+EOR [5,0]
+
+
+(*This relationship basically controls the fact that the exit and entry booms cannot be open and closed at the same time.*)
+
+SOR  [0,6] (**) (**)  XIO  [1,0] (*_IO_EM_DO_03*) (*exit boom lifts*)  OTE  [2,0] (*_IO_EM_DO_02*) (*exit boom lowers*)
+EOR [3,0]
+
+
+(*Entry sensor activated once car recieved ticket. Up down counter for parking lot status and and entry boom lifts once the car activates the sensor. *)
+
+SOR  [0,8] (**) (**)  XIF  [1,0] (*_IO_EM_DI_05*) (*entry sensor*)  XIC  [2,0] (*O4*) (**)  
+ BST  FB  [3,0] (*CTUD*) (*CTUD_1*) ( (*CU:CU*)(**) (**)  , (*CD:CD*)(*O5*) (**)  , (*RESET:RESE*)(*_IO_EM_DI_02*) (**)  , (*LOAD:LOAD*)(*_IO_EM_DI_00*) (**)  , (*PV:PV*)(*6*) (**) ; (*QU:QU*)(**) (**)  , (*QD:QD*)(*_IO_EM_DO_04*) (**)  , (*CV:CV*)(**) (**) )  OTE  [6,0] (*_IO_EM_DO_05*) (*parking lot full*)
+   NXB  
+ BST  OTR  [3,5] (*_IO_EM_DO_01*) (*entry boom lifts*)
+   NXB  OTR  [3,6] (*O4*) (**)
+ BND
+
+ BND
+
+EOR [7,0]
+
+
+(*If parking lot is empty, then only can the parking lot be locked, which is connected to the up down counter and as it hits zero, the O_04 is activated.*)
+
+SOR  [0,16] (**) (**)  XIC  [1,0] (*_IO_EM_DI_00*) (*lock entry*)  XIC  [2,0] (*_IO_EM_DO_04*) (*parking lot empty*)  OTS  [3,0] (*O6*) (*parking lot closed*)
+EOR [4,0]
+
+
+(*This can reopen parking lot.*)
+
+SOR  [0,18] (**) (**)  XIC  [1,0] (*_IO_EM_DI_01*) (*reopen entry*)  OTR  [2,0] (*O6*) (*parking lot closed*)
+EOR [3,0]
+
+
+(*If you pay at exit , then the exit boom lifts, but it should not lift if the parking lot is empty, that is why the reverse contact of the O_04 is there.*)
+
+SOR  [0,20] (**) (**)  XIC  [1,0] (*_IO_EM_DI_04*) (*pay at exit*)  XIO  [2,0] (*_IO_EM_DO_04*) (*parking lot empty*)  OTS  [3,0] (*_IO_EM_DO_03*) (*exit boom lifts*)
+EOR [4,0]
+
+
+(*This ensures that the sensors cannot be activated by any other object other than humans in a car. *)
+
+SOR  [0,22] (**) (**)  XIF  [1,0] (*_IO_EM_DI_06*) (*exit sensor*)  XIC  [2,0] (*_IO_EM_DO_03*) (*exit boom lifts*)  
+ BST  OTE  [3,0] (*O5*) (**)
+   NXB  OTR  [3,1] (*_IO_EM_DO_03*) (*exit boom lifts*)
+ BND
+
+EOR [4,0]
+
+
+(*master switch for resseting the counter and project as an assitance. *)
+
+SOR  [0,25] (**) (**)  XIC  [1,0] (*_IO_EM_DI_02*) (**)  
+ BST  OTR  [2,0] (*_IO_EM_DO_00*) (*entry boom lowers*)
+   NXB  
+ BST  OTR  [2,1] (*_IO_EM_DO_01*) (*entry boom lifts*)
+   NXB  
+ BST  OTR  [2,2] (*_IO_EM_DO_02*) (*exit boom lowers*)
+   NXB  
+ BST  OTR  [2,3] (*_IO_EM_DO_03*) (*exit boom lifts*)
+   NXB  
+ BST  OTR  [2,4] (*_IO_EM_DO_04*) (*parking lot empty*)
+   NXB  OTR  [2,5] (*_IO_EM_DO_05*) (*parking lot full*)
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+EOR [3,0]
+EOF
+#end_info
+END_PROGRAM

@@ -1,0 +1,108 @@
+PROGRAM Prog1
+#info= QLD
+BOF
+
+
+(*Pressing I-03 activates S1 the converyor belt.And keeps it activated until turned off because of the set coil.*)
+
+SOR  [0,1] (**) (**)  XIC  [1,0] (*_IO_EM_DI_03*) (*s1*)  OTS  [2,0] (*_IO_EM_DO_00*) (*CB1*)
+EOR [3,0]
+
+
+(*Pressing I-04 activates S2 the first sensor on the belt.*)
+
+SOR  [0,3] (**) (**)  XIC  [1,0] (*_IO_EM_DI_04*) (*s2*)  OTE  [2,0] (*M4*) (**)
+EOR [3,0]
+
+
+(*If the S2 is held onto and the S3 is pressed, which indicates the second sensor, then the sytem knows it is a large box and turns table counter-clockwise*)
+
+SOR  [0,5] (**) (**)  XIC  [1,0] (*_IO_EM_DI_05*) (*s3*)  XIC  [2,0] (*M4*) (**)  OTS  [3,0] (*_IO_EM_DO_05*) (*CCW*)
+EOR [4,0]
+
+
+(*If the S2 button is released, then the reverse contact is still going to conduct here and the S3 itself will indicate a small box. The counter-clockwise reverse contact ensures that the table does not turn clockwise when when there is a large box.*)
+
+SOR  [0,7] (**) (**)  XIC  [1,0] (*_IO_EM_DI_05*) (*s3*)  XIO  [2,0] (*M4*) (**)  XIO  [3,0] (*_IO_EM_DO_05*) (*CCW*)  OTS  [4,0] (*_IO_EM_DO_04*) (*CW*)
+EOR [5,0]
+
+
+(*Regardless if it is a small or large box, the CB2 sensor is activated in both scenarios after S3 is activated.*)
+
+SOR  [0,9] (**) (**)  XIC  [1,0] (*_IO_EM_DI_05*) (*s3*)  OTS  [2,0] (*_IO_EM_DO_01*) (*CB2*)
+EOR [3,0]
+
+
+(*Activating S5, the CB2 and CB4 are activated simultaneously. This spins table clockwise.*)
+
+SOR  [0,11] (**) (**)  XIC  [1,0] (*_IO_EM_DI_01*) (*s5*)  
+ BST  OTS  [2,0] (*_IO_EM_DO_01*) (*CB2*)
+   NXB  OTS  [2,1] (*_IO_EM_DO_03*) (*CB4*)
+ BND
+
+EOR [3,0]
+
+
+(*Activating S6, the CB2 and CB3 are activated. This spins the table counter-clockwise.*)
+
+SOR  [0,14] (**) (**)  XIC  [1,0] (*_IO_EM_DI_00*) (*s6*)  
+ BST  OTS  [2,0] (*_IO_EM_DO_01*) (*CB2*)
+   NXB  OTS  [2,1] (*_IO_EM_DO_02*) (*CB3*)
+ BND
+
+EOR [3,0]
+
+
+(*Activating sensor 4, turns off the first belt and the turn table at the end.*)
+
+SOR  [0,17] (**) (**)  XIC  [1,0] (*_IO_EM_DI_06*) (*s4*)  
+ BST  OTR  [2,0] (*_IO_EM_DO_00*) (*CB1*)
+   NXB  OTR  [2,1] (*_IO_EM_DO_01*) (*CB2*)
+ BND
+
+EOR [3,0]
+
+
+(*This ensures that the CB3 belt is not active at the same time.*)
+
+SOR  [0,20] (**) (**)  XIC  [1,0] (*_IO_EM_DI_01*) (*s5*)  OTR  [2,0] (*_IO_EM_DO_02*) (*CB3*)
+EOR [3,0]
+
+
+(*This ensures that the CB4 belt is not active at the same time.*)
+
+SOR  [0,22] (**) (**)  XIC  [1,0] (*_IO_EM_DI_00*) (*s6*)  OTR  [2,0] (*_IO_EM_DO_03*) (*CB4*)
+EOR [3,0]
+
+
+(*This is a master switch to turn off both CB4 and CB3 belts, as well as resseting entire circuit for next box.*)
+
+SOR  [0,24] (**) (**)  XIC  [1,0] (*_IO_EM_DI_02*) (*s7*)  
+ BST  OTR  [2,0] (*_IO_EM_DO_00*) (*CB1*)
+   NXB  
+ BST  OTR  [2,1] (*_IO_EM_DO_01*) (*CB2*)
+   NXB  
+ BST  OTR  [2,2] (*_IO_EM_DO_02*) (*CB3*)
+   NXB  
+ BST  OTR  [2,3] (*_IO_EM_DO_03*) (*CB4*)
+   NXB  
+ BST  OTR  [2,4] (*_IO_EM_DO_04*) (*CW*)
+   NXB  
+ BST  OTR  [2,5] (*_IO_EM_DO_05*) (*CCW*)
+   NXB  OTR  [2,6] (*M4*) (**)
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+EOR [3,0]
+EOF
+#end_info
+END_PROGRAM

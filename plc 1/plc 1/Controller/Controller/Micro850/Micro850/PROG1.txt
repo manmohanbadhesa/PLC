@@ -1,0 +1,242 @@
+(****** QuickLD compiler *******************************)
+(****** Copyright Rockwell Automation Canada, Ltd ******)
+(****** ST *********************************************)
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB1 := _IO_EM_DI_03 ;
+IF __EDTB1 THEN
+(*Set coil*)
+_IO_EM_DO_00 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+M3 := _IO_EM_DI_04 ;
+__EDTB2 := _IO_EM_DI_04 ;
+IF __EDTB2 THEN
+(*Set coil*)
+M4 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB3 := _IO_EM_DO_05 AND M3 ;
+IF __EDTB3 THEN
+(*Set coil*)
+_IO_EM_DO_05 := TRUE ;
+END_IF ;
+__EDTB4 := _IO_EM_DO_05 AND NOT(M4) ;
+IF __EDTB4 THEN
+(*Set coil*)
+_IO_EM_DO_04 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB5 := _IO_EM_DI_01 ;
+IF __EDTB5 THEN
+(*Set coil*)
+_IO_EM_DO_01 := TRUE ;
+END_IF ;
+__EDTB6 := _IO_EM_DI_01 ;
+IF __EDTB6 THEN
+(*Set coil*)
+_IO_EM_DO_03 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB7 := _IO_EM_DI_00 ;
+IF __EDTB7 THEN
+(*Set coil*)
+_IO_EM_DO_01 := TRUE ;
+END_IF ;
+__EDTB8 := _IO_EM_DI_00 ;
+IF __EDTB8 THEN
+(*Set coil*)
+_IO_EM_DO_02 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB9 := _IO_EM_DI_06 ;
+IF __EDTB9 THEN
+(*Reset coil*)
+_IO_EM_DO_00 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB10 := _IO_EM_DI_06 ;
+IF __EDTB10 THEN
+(*Reset coil*)
+_IO_EM_DO_01 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB11 := _IO_EM_DI_01 ;
+IF __EDTB11 THEN
+(*Set coil*)
+_IO_EM_DO_01 := TRUE ;
+END_IF ;
+__EDTB12 := _IO_EM_DI_01 ;
+IF __EDTB12 THEN
+(*Set coil*)
+_IO_EM_DO_03 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB13 := _IO_EM_DI_00 ;
+IF __EDTB13 THEN
+(*Set coil*)
+_IO_EM_DO_01 := TRUE ;
+END_IF ;
+__EDTB14 := _IO_EM_DI_00 ;
+IF __EDTB14 THEN
+(*Set coil*)
+_IO_EM_DO_02 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB15 := _IO_EM_DI_01 ;
+IF __EDTB15 THEN
+(*Reset coil*)
+_IO_EM_DO_02 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB16 := _IO_EM_DI_00 ;
+IF __EDTB16 THEN
+(*Reset coil*)
+_IO_EM_DO_03 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB17 := _IO_EM_DI_02 ;
+IF __EDTB17 THEN
+(*Reset coil*)
+_IO_EM_DO_00 := FALSE ;
+END_IF ;
+__EDTB18 := _IO_EM_DI_02 ;
+IF __EDTB18 THEN
+(*Reset coil*)
+_IO_EM_DO_01 := FALSE ;
+END_IF ;
+__EDTB19 := _IO_EM_DI_02 ;
+IF __EDTB19 THEN
+(*Reset coil*)
+_IO_EM_DO_02 := FALSE ;
+END_IF ;
+__EDTB20 := _IO_EM_DI_02 ;
+IF __EDTB20 THEN
+(*Reset coil*)
+_IO_EM_DO_03 := FALSE ;
+END_IF ;
+__EDTB21 := _IO_EM_DI_02 ;
+IF __EDTB21 THEN
+(*Reset coil*)
+_IO_EM_DO_04 := FALSE ;
+END_IF ;
+__EDTB22 := _IO_EM_DI_02 ;
+IF __EDTB22 THEN
+(*Reset coil*)
+_IO_EM_DO_05 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Code for the end of File **************)
+__GL __LG0000 ;
+
+
+
+(*************** Local Symbols table *******************)
+(* __EDTB1 *)
+(* __EDTB2 *)
+(* __EDTB3 *)
+(* __EDTB4 *)
+(* __EDTB5 *)
+(* __EDTB6 *)
+(* __EDTB7 *)
+(* __EDTB8 *)
+(* __EDTB9 *)
+(* __EDTB10 *)
+(* __EDTB11 *)
+(* __EDTB12 *)
+(* __EDTB13 *)
+(* __EDTB14 *)
+(* __EDTB15 *)
+(* __EDTB16 *)
+(* __EDTB17 *)
+(* __EDTB18 *)
+(* __EDTB19 *)
+(* __EDTB20 *)
+(* __EDTB21 *)
+(* __EDTB22 *)
+

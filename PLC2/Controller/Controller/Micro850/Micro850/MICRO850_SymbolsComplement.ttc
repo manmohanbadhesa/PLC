@@ -1,0 +1,14 @@
+[BEGIN FB INPUTS]
+I1=micro850.micro850.prog1/ctd_1.cd,0x421,BOOL
+I2=micro850.micro850.prog1/ctd_1.load,0x420,BOOL
+I3=micro850.micro850.prog1/ctd_1.pv,0x1520,DINT
+I4=micro850.micro850.prog1/ctd_2.cd,0x422,BOOL
+I5=micro850.micro850.prog1/ctd_2.load,0x420,BOOL
+I6=micro850.micro850.prog1/ctd_2.pv,0x1520,DINT
+I7=micro850.micro850.prog1/ctd_3.cd,0x423,BOOL
+I8=micro850.micro850.prog1/ctd_3.load,0x420,BOOL
+I9=micro850.micro850.prog1/ctd_3.pv,0x1520,DINT
+I10=micro850.micro850.prog1/ctd_4.cd,0x424,BOOL
+I11=micro850.micro850.prog1/ctd_4.load,0x420,BOOL
+I12=micro850.micro850.prog1/ctd_4.pv,0x1520,DINT
+[END]

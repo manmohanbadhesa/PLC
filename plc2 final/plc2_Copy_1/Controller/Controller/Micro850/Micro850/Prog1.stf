@@ -1,0 +1,100 @@
+PROGRAM Prog1
+#info= QLD
+BOF
+
+
+(*This allows a person to choose Diet Pop. If there is none in the machine, then the counter goes to zero and O_OO turns on indicating no cans available. This also turns off the paid light if the can is available. If can is available, the O-O5 turns on indi*)
+
+SOR  [0,1] (**) (**)  XIC  [1,0] (*_IO_EM_DI_03*) (*Diet Pop*)  XIO  [2,0] (*_IO_EM_DO_00*) (**)  XIC  [3,0] (*_IO_EM_DO_04*) (*Paid*)  
+ BST  FB  [4,0] (*CTD*) (*CTD_3*) ( (*CD:CD*)(**) (**)  , (*LOAD:LOAD*)(*_IO_EM_DI_02*) (**)  , (*PV:PV*)(*5*) (**) ; (*Q:Q*)(**) (**)  , (*CV:CV*)(**) (**) )  OTE  [7,0] (*_IO_EM_DO_00*) (**)
+   NXB  
+ BST  OTR  [4,3] (*_IO_EM_DO_04*) (*Paid*)
+   NXB  OTS  [4,4] (*_IO_EM_DO_05*) (**)
+ BND
+
+ BND
+
+EOR [8,0]
+
+
+(*This allows a person to choose Cherry Cola. If there is none in the machine, then the counter goes to zero and O_O1 turns on indicating no cans available. This also turns off the paid light if the can is available. If can is available, the O-O5 turns on i*)
+
+SOR  [0,7] (**) (**)  XIC  [1,0] (*_IO_EM_DI_04*) (*Cherry Cola*)  XIO  [2,0] (*_IO_EM_DO_01*) (**)  XIC  [3,0] (*_IO_EM_DO_04*) (*Paid*)  
+ BST  FB  [4,0] (*CTD*) (*CTD_2*) ( (*CD:CD*)(**) (**)  , (*LOAD:LOAD*)(*_IO_EM_DI_02*) (**)  , (*PV:PV*)(*5*) (**) ; (*Q:Q*)(**) (**)  , (*CV:CV*)(**) (**) )  OTE  [7,0] (*_IO_EM_DO_01*) (**)
+   NXB  
+ BST  OTR  [4,3] (*_IO_EM_DO_04*) (*Paid*)
+   NXB  OTS  [4,4] (*_IO_EM_DO_05*) (**)
+ BND
+
+ BND
+
+EOR [8,0]
+
+
+(*This allows a person to choose Tropical Mix. If there is none in the machine, then the counter goes to zero and O_O2 turns on indicating no cans available. This also turns off the paid light if the can is available. If can is available, the O-O5 turns on *)
+
+SOR  [0,13] (**) (**)  XIC  [1,0] (*_IO_EM_DI_05*) (*Tropical Mix*)  XIO  [2,0] (*_IO_EM_DO_02*) (**)  XIC  [3,0] (*_IO_EM_DO_04*) (*Paid*)  
+ BST  FB  [4,0] (*CTD*) (*CTD_1*) ( (*CD:CD*)(**) (**)  , (*LOAD:LOAD*)(*_IO_EM_DI_02*) (**)  , (*PV:PV*)(*5*) (**) ; (*Q:Q*)(**) (**)  , (*CV:CV*)(**) (**) )  OTE  [7,0] (*_IO_EM_DO_02*) (**)
+   NXB  
+ BST  OTR  [4,3] (*_IO_EM_DO_04*) (*Paid*)
+   NXB  OTS  [4,4] (*_IO_EM_DO_05*) (**)
+ BND
+
+ BND
+
+EOR [8,0]
+
+
+(*This allows a person to choose Extreme Cola. If there is none in the machine, then the counter goes to zero and O_O3 turns on indicating no cans available. This also turns off the paid light if the can is available. If can is available, the O-O5 turns on *)
+
+SOR  [0,19] (**) (**)  XIC  [1,0] (*_IO_EM_DI_06*) (*Extreme Cola*)  XIO  [2,0] (*_IO_EM_DO_03*) (**)  XIC  [3,0] (*_IO_EM_DO_04*) (*Paid*)  
+ BST  FB  [4,0] (*CTD*) (*CTD_4*) ( (*CD:CD*)(**) (**)  , (*LOAD:LOAD*)(*_IO_EM_DI_02*) (**)  , (*PV:PV*)(*5*) (**) ; (*Q:Q*)(**) (**)  , (*CV:CV*)(**) (**) )  OTE  [7,0] (*_IO_EM_DO_03*) (**)
+   NXB  
+ BST  OTR  [4,3] (*_IO_EM_DO_04*) (*Paid*)
+   NXB  OTS  [4,4] (*_IO_EM_DO_05*) (**)
+ BND
+
+ BND
+
+EOR [8,0]
+
+
+(*This indicates the customer has deposited sufficient money. *)
+
+SOR  [0,25] (**) (**)  XIC  [1,0] (*_IO_EM_DI_00*) (*Pay*)  OTS  [2,0] (*_IO_EM_DO_04*) (*Paid*)
+EOR [3,0]
+
+
+(*Picking up pop turns off the O-05 light. *)
+
+SOR  [0,27] (**) (**)  XIC  [1,0] (*_IO_EM_DI_01*) (*Drink Pick Up*)  OTR  [2,0] (*_IO_EM_DO_05*) (**)
+EOR [3,0]
+
+
+(*This is a switch to reset the counters after the vending machine is full.  And to reset project as an extra.*)
+
+SOR  [0,29] (**) (**)  XIC  [1,0] (*_IO_EM_DI_02*) (**)  
+ BST  
+ BST  OTR  [2,0] (*_IO_EM_DO_00*) (**)
+   NXB  OTR  [2,1] (*_IO_EM_DO_01*) (**)
+ BND
+
+   NXB  
+ BST  OTR  [2,2] (*_IO_EM_DO_02*) (**)
+   NXB  
+ BST  OTR  [2,3] (*_IO_EM_DO_03*) (**)
+   NXB  
+ BST  OTR  [2,4] (*_IO_EM_DO_04*) (*Paid*)
+   NXB  OTR  [2,5] (*_IO_EM_DO_05*) (**)
+ BND
+
+ BND
+
+ BND
+
+ BND
+
+EOR [3,0]
+EOF
+#end_info
+END_PROGRAM

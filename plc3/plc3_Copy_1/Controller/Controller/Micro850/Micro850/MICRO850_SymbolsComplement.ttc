@@ -1,0 +1,7 @@
+[BEGIN FB INPUTS]
+I1=micro850.micro850.prog1/ctud_1.cu,0x14E4,BOOL
+I2=micro850.micro850.prog1/ctud_1.cd,0x449,BOOL
+I3=micro850.micro850.prog1/ctud_1.reset,0x420,BOOL
+I4=micro850.micro850.prog1/ctud_1.load,0x41E,BOOL
+I5=micro850.micro850.prog1/ctud_1.pv,0x14E8,DINT
+[END]

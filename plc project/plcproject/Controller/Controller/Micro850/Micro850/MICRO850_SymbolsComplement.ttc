@@ -1,0 +1,14 @@
+[BEGIN FB INPUTS]
+I1=micro850.micro850.prog1/tof_1.in,0x1546,BOOL
+I2=micro850.micro850.prog1/tof_1.pt,0x1550,TIME
+I3=micro850.micro850.prog1/tof_2.in,0x1546,BOOL
+I4=micro850.micro850.prog1/tof_2.pt,0x1550,TIME
+I5=micro850.micro850.prog1/ton_1.in,0x448,BOOL
+I6=micro850.micro850.prog1/ton_1.pt,0x154C,TIME
+I7=micro850.micro850.prog1/ton_2.in,0x448,BOOL
+I8=micro850.micro850.prog1/ton_2.pt,0x1550,TIME
+I9=micro850.micro850.prog1/ton_3.in,0x449,BOOL
+I10=micro850.micro850.prog1/ton_3.pt,0x154C,TIME
+I11=micro850.micro850.prog1/ton_4.in,0x449,BOOL
+I12=micro850.micro850.prog1/ton_4.pt,0x1550,TIME
+[END]

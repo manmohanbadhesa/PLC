@@ -1,0 +1,176 @@
+(****** QuickLD compiler *******************************)
+(****** Copyright Rockwell Automation Canada, Ltd ******)
+(****** ST *********************************************)
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+(* FB call: TON *)
+TON_1(O1, T#5S) ;
+__EDTB1 := TON_1.Q ;
+IF __EDTB1 THEN
+(*Set coil*)
+_IO_EM_DO_04 := TRUE ;
+END_IF ;
+__EDTB2 := TON_1.Q ;
+IF __EDTB2 THEN
+(*Reset coil*)
+_IO_EM_DO_05 := FALSE ;
+END_IF ;
+(* FB call: TON *)
+TON_2(O1, T#7S) ;
+__EDTB3 := TON_2.Q ;
+IF __EDTB3 THEN
+(*Reset coil*)
+_IO_EM_DO_04 := FALSE ;
+END_IF ;
+__EDTB4 := TON_2.Q ;
+IF __EDTB4 THEN
+(*Set coil*)
+_IO_EM_DO_02 := TRUE ;
+END_IF ;
+__EDTB5 := TON_2.Q ;
+IF __EDTB5 THEN
+(*Set coil*)
+_IO_EM_DO_03 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Fall detection on  : _IO_EM_DI_03 with __MEMO__1___IO_EM_DI_03 *)
+(* FB call: TOF *)
+TOF_1((__MEMO__1___IO_EM_DI_03 AND NOT(_IO_EM_DI_03)), T#7S) ;
+O1 := TOF_1.Q ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__1___IO_EM_DI_03 := _IO_EM_DI_03 ; (*Fall detection on  : _IO_EM_DI_03 with __MEMO__1___IO_EM_DI_03 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+(* FB call: TON *)
+TON_3(O2, T#5S) ;
+__EDTB6 := TON_3.Q ;
+IF __EDTB6 THEN
+(*Set coil*)
+_IO_EM_DO_01 := TRUE ;
+END_IF ;
+__EDTB7 := TON_3.Q ;
+IF __EDTB7 THEN
+(*Reset coil*)
+_IO_EM_DO_02 := FALSE ;
+END_IF ;
+(* FB call: TON *)
+TON_4(O2, T#7S) ;
+__EDTB8 := TON_4.Q ;
+IF __EDTB8 THEN
+(*Reset coil*)
+_IO_EM_DO_01 := FALSE ;
+END_IF ;
+__EDTB9 := TON_4.Q ;
+IF __EDTB9 THEN
+(*Set coil*)
+_IO_EM_DO_05 := TRUE ;
+END_IF ;
+__EDTB10 := TON_4.Q ;
+IF __EDTB10 THEN
+(*Set coil*)
+_IO_EM_DO_00 := TRUE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+; (*Fall detection on  : _IO_EM_DI_04 with __MEMO__2___IO_EM_DI_04 *)
+(* FB call: TOF *)
+TOF_2((__MEMO__2___IO_EM_DI_04 AND NOT(_IO_EM_DI_04)), T#7S) ;
+O2 := TOF_2.Q ;
+
+(*************** Code for the end of Rung **************)
+__MEMO__2___IO_EM_DI_04 := _IO_EM_DI_04 ; (*Fall detection on  : _IO_EM_DI_04 with __MEMO__2___IO_EM_DI_04 *)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Rung **********************************)
+(**)
+(*Label :*)(**)
+__EDTB11 := _IO_EM_DI_02 ;
+IF __EDTB11 THEN
+(*Reset coil*)
+_IO_EM_DO_00 := FALSE ;
+END_IF ;
+__EDTB12 := _IO_EM_DI_02 ;
+IF __EDTB12 THEN
+(*Reset coil*)
+_IO_EM_DO_01 := FALSE ;
+END_IF ;
+__EDTB13 := _IO_EM_DI_02 ;
+IF __EDTB13 THEN
+(*Reset coil*)
+_IO_EM_DO_02 := FALSE ;
+END_IF ;
+__EDTB14 := _IO_EM_DI_02 ;
+IF __EDTB14 THEN
+(*Reset coil*)
+_IO_EM_DO_03 := FALSE ;
+END_IF ;
+__EDTB15 := _IO_EM_DI_02 ;
+IF __EDTB15 THEN
+(*Reset coil*)
+_IO_EM_DO_04 := FALSE ;
+END_IF ;
+__EDTB16 := _IO_EM_DI_02 ;
+IF __EDTB16 THEN
+(*Reset coil*)
+_IO_EM_DO_05 := FALSE ;
+END_IF ;
+
+(*************** Code for the end of Rung **************)
+
+
+(*************** Code for the end of File **************)
+__GL __LG0000 ;
+
+
+
+(*************** Local Symbols table *******************)
+(* __EDTB1 *)
+(* __EDTB2 *)
+(* __EDTB3 *)
+(* __EDTB4 *)
+(* __EDTB5 *)
+(* __MEMO__1___IO_EM_DI_03 *)
+(* __EDTB6 *)
+(* __EDTB7 *)
+(* __EDTB8 *)
+(* __EDTB9 *)
+(* __EDTB10 *)
+(* __MEMO__2___IO_EM_DI_04 *)
+(* __EDTB11 *)
+(* __EDTB12 *)
+(* __EDTB13 *)
+(* __EDTB14 *)
+(* __EDTB15 *)
+(* __EDTB16 *)
+

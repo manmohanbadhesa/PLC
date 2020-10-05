@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectElements>
+  <AcfElementGuid Guid="15bbea00-5f52-4b49-a588-0d8b8ffca8e3">
+    <File>Prog1.AcfMlge</File>
+  </AcfElementGuid>
+  <AcfElementGuid Guid="cd5a68b4-8e56-478e-ad0a-a556c75f72ab">
+    <File>Prog2.AcfMlge</File>
+  </AcfElementGuid>
+  <AcfElementGuid Guid="fe82964b-1009-4e9b-8abc-1806f278d4c9">
+    <File>Prog3.AcfMlge</File>
+  </AcfElementGuid>
+</ProjectElements>
